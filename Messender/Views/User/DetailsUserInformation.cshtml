@@ -1,0 +1,153 @@
+﻿@using Microsoft.AspNet.Identity
+@model Messender.Models.ApplicationUser
+@{
+    ViewBag.Title = "DetailsUserInformation";
+}
+
+<div class="modal-content" style=" width: 424px" overflow:auto>
+    <div class="modal-body">
+        <div id="profilepic">
+            <table>
+                <tr>
+                    <td>
+                        @if (User.Identity.GetUserId() == Model.Id)
+                        {
+                            <label style="margin-left: 35px">
+                                @if (Model.Image == null)
+                                {
+                                    <img class='rounded-circle' style='width:75px; height:80px;' src="@Url.Content("~/Image/user.jpeg")" alt="">
+               
+                                }
+                                else
+                                {
+                                    @Html.Raw("<img class='rounded-circle' style='width:75px; height:80px;' src=\"data:image/jpeg;base64,"
+                                              + Convert.ToBase64String(Model.Image) + "\" />")
+                                }
+                                @Html.DisplayFor(m => m.FirstName)
+                                @Html.DisplayFor(m => m.LastName)
+                                <button style="float:right" type="submit" onclick="EditUserImage();" id="edit" class="btn1 btn-primary">Edit Image</button>
+                            </label>
+                        }
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <hr />
+        <div>
+            <div id="divBasicInfo" class="dl-horizontal" style="margin-left: 15px">
+                @if (User.Identity.GetUserId() == Model.Id)
+                {
+                    <button type="submit" style="float: right" onclick="EditUserInformation();" name="SendMessage" id="sendmessage" class="btn btn-primary">Change user information</button>
+                }
+                <table class="table">
+                    @if (Model.Email != null)
+                    {
+                        <tr>
+                            <td>
+                                Email:
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => m.Email)
+                            </td>
+                        </tr>
+                    }
+                    @if (Model.DateOfBirth != null)
+                    {
+                        <tr>
+                            <td>
+                                Date of bitrh:
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => m.DateOfBirth)
+                            </td>
+                        </tr>
+                    }
+                    @if (Model.PhoneNumber != null)
+                    {
+                        <tr>
+                            <td>
+                                Phone number:
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => m.PhoneNumber)
+                            </td>
+                        </tr>
+                    }
+                    @if (Model.Address != null)
+                    {
+                        <tr>
+                            <td>
+                                Address:
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => m.Address)
+                            </td>
+                        </tr>
+                    }
+                    @if (Model.Sity != null)
+                    {
+                        <tr>
+                            <td>
+                                City:
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => m.Sity)
+                            </td>
+                        </tr>
+                    }
+                    @if (Model.State != null)
+                    {
+                        <tr>
+                            <td>
+                                State:
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => m.State)
+                            </td>
+                        </tr>
+                    }
+                    @if (Model.County != null)
+                    {
+                        <tr>
+                            <td>
+                                Country:
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => m.County)
+                            </td>
+                        </tr>
+                    }
+                    @if (Model.Gender != null)
+                    {
+                        <tr>
+                            <td>
+                                Gender:
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => m.Gender)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function EditUserInformation() {
+        var url = '/User/EditUserInformation'
+        $.get(url, function (result) {
+            $("#divBasicInfo").html('');
+            $("#divBasicInfo").html(result);
+        });
+    }
+
+    function EditUserImage() {
+        var url = '/User/EditUserImage'
+        $.get(url, function (result) {
+            $("#profilepic").html('');
+            $("#profilepic").html(result);
+        });
+    }
+</script>
+

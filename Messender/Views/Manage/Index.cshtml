@@ -1,0 +1,82 @@
+﻿@using System.Web.UI.WebControls
+@model Messender.Models.IndexViewModel
+@{
+    Layout = null;
+}
+
+<div class="modal-content" style="width: 424px" overflow:auto>
+    <div class="modal-body">
+
+        <h4>Changing account settings</h4>
+        <hr />
+        <div id="Change">
+            <dl class="dl-horizontal">
+                <dt>Password:</dt>
+                <dd>
+                    @if (Model.HasPassword)
+                    {
+                        @Html.ActionLink("Change password", "ForgotPassword", "Account")
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Create password", "SetPassword")
+                    }
+                </dd>
+                <dt>Account deleting:</dt>
+                <dd>
+                    @Html.ActionLink("Account deleting", "Delete", "Account")
+                    @*<button style="float:right" type="submit" onclick="Accountdeleting();" id="edit" class="btn1 btn-primary">Account deleting</button>*@
+                </dd>
+                <dt>Phone number:</dt>
+                <dd>
+                    @(Model.PhoneNumber ?? "None")
+                    @if (Model.PhoneNumber != null)
+                    {
+                        <br />
+                        @*<button style="float:right" type="submit" onclick="ChangePhoneNumber();" id="ChangePhoneNumber" class="btn1 btn-primary">Add Phone Number</button>*@
+                        <text>&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;</text>
+                        using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <text><input type="submit" value="Remove" class="btn-link" /></text>
+                        }
+                    }
+                    else
+                    {
+                        @*<button style="float:right" type="submit" onclick="AddPhoneNumber();" id="AddPhoneNumber" class="btn1 btn-primary">Add Phone Number</button>*@
+                        <text>&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")&nbsp;&nbsp;</text>
+                    }
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Accountdeleting() {
+        var url = '/Account/Delete'
+        $.get(url, function (result) {
+            $("#Change").html('');
+            $("#Change").html(result);
+        });
+    }
+
+    function AddPhoneNumber() {
+        var url = '/Manage/AddPhoneNumber'
+        $.get(url, function (result) {
+            $("#Change").html('');
+            $("#Change").html(result);
+        });
+    }
+
+    function ChangePhoneNumber() {
+        var url = '/Manage/AddPhoneNumber'
+        $.get(url, function (result) {
+            $("#Change").html('');
+            $("#Change").html(result);
+        });
+    }
+
+  
+</script>
+

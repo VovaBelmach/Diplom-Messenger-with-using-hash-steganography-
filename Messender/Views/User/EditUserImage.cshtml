@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNet.Identity
+@model Messender.Models.ApplicationUser
+@{
+}
+@using (Html.BeginForm("EditUserImage", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Email)
+        @Html.HiddenFor(model => model.EmailConfirmed)
+        @Html.HiddenFor(model => model.PasswordHash)
+        @Html.HiddenFor(model => model.SecurityStamp)
+        @Html.HiddenFor(model => model.PhoneNumber)
+        @Html.HiddenFor(model => model.PhoneNumberConfirmed)
+        @Html.HiddenFor(model => model.TwoFactorEnabled)
+        @Html.HiddenFor(model => model.LockoutEndDateUtc)
+        @Html.HiddenFor(model => model.LockoutEnabled)
+        @Html.HiddenFor(model => model.AccessFailedCount)
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.UserName)
+        @Html.HiddenFor(model => model.FirstName)
+        @Html.HiddenFor(model => model.LastName)
+        @Html.HiddenFor(model => model.DateOfBirth)
+        @Html.HiddenFor(model => model.Address)
+        @Html.HiddenFor(model => model.Sity)
+        @Html.HiddenFor(model => model.State)
+        @Html.HiddenFor(model => model.County)
+        @Html.HiddenFor(model => model.Gender)
+        <label>
+
+            @if (Model.Image == null)
+            {
+                <img class='rounded-circle' style='width:75px; height:80px;' src="@Url.Content("~/Image/user.jpeg")" alt="">
+               
+            }
+            else
+            {
+                @Html.Raw("<img class='rounded-circle' style='width:75px; height:80px;' src=\"data:image/jpeg;base64,"
+                          + Convert.ToBase64String(Model.Image) + "\" />")
+            }
+
+
+
+                    <input type="file" name="uploadImage" />
+
+        </label>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <button class="btn" type="reset" value="Cancel" onclick="Cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function Cancel() {
+            $(".close").click();
+        }
+    </script>
+}

@@ -1,0 +1,24 @@
+﻿@using Messender.Models;
+@model List<Messender.Models.FriendShip>
+
+<div class="modal-content">
+    <div class="modal-header">
+        <label>Notification</label>
+        <button class="close" data-dismiss="modal" area-hidden="true">X</button>
+    </div>
+    @foreach (FriendShip element in Model)
+    {
+        <table class="table">
+            <tr>
+                <td>
+                    @element.FirstUser.FirstName @element.FirstUser.LastName
+                </td>
+                <td>
+                    @Html.ActionLink("Confirm", "Add", "Friend", new { @id = element.IdFriendShip }, null)
+                </td>
+            </tr>
+
+        </table>
+    }
+</div>
+

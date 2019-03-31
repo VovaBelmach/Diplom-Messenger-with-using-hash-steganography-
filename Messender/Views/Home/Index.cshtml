@@ -1,0 +1,91 @@
+﻿@model Messender.Models.ApplicationUser
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div id="modDialog" class="modal fade">
+        <div id="dialogContent" class="modal-dialog"></div>
+    </div>
+    <div class="right-sidebar">
+        <div class="font-italic">
+            @if (Model.Image == null)
+            {
+            <img class='rounded-circle' style='width:75px; height:80px;' src="@Url.Content("~/Image/user.jpeg")" alt="">
+               
+            }
+            else
+            {
+                @Html.Raw("<img class='rounded-circle' style='width:75px; height:80px;' src=\"data:image/jpeg;base64,"
+                          + Convert.ToBase64String(Model.Image) + "\" />")
+            }
+            @Html.ActionLink(Model.FirstName + " " + Model.LastName, "DetailsUserInformation", "User", null, new { @class = "compItem" })
+        </div>
+        <hr />
+        @using (Ajax.BeginForm("SearchUserName", "Friend", new AjaxOptions { UpdateTargetId = "results" }))
+        {
+            <form class="form-search">
+                <div class="input-append">
+                    <input class="form-control" name="name" type="text" placeholder="Search">
+                    <button type="submit" name="button-search" class="ghost-button"><img src="~/Image/search.png" style='width: 25px; height: 25px'></button>
+                </div>
+            </form>
+        }
+        <div id="results"></div>
+        @Html.Action("FriendList", "Friend")
+    </div>
+    <div class="center-sidebar">
+        <div id="chats"></div>
+    </div>
+</body>
+</html>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".compItem").click(function (e) {
+                e.preventDefault();
+                $.get(this.href,
+                    function (data) {
+                        $('#dialogContent').html(data);
+                        $('#modDialog').modal('show');
+                    });
+            });
+        });
+    </script>
+
+    <script>
+
+        $(function () {
+            $('[data-toggle="tooltip"]').popover({
+                container: 'body',
+                html: true,
+                content: function () {
+
+                    var clone = $($(this).data('popover-content')).clone(true).removeClass('hide');
+                    return clone;
+                }
+            }).click(function (e) {
+                e.preventDefault();
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('input[name="name"]').on('keydown', function (e) {
+            if (e.keyCode == 13) {
+                $('.button-search').click();
+            }
+        });
+    </script>
+}
+@Scripts.Render("~/scripts/jquery-3.2.1.min.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+@Scripts.Render("~/Scripts/jquery.signalR-2.2.2.min.js")

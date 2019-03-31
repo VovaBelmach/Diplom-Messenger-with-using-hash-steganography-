@@ -1,0 +1,133 @@
+﻿@using Microsoft.AspNet.Identity
+@model Messender.Models.ApplicationUser
+
+@{
+
+}
+
+<div id="edit" class="span12">
+    @using (Html.BeginForm("EditUserInformation", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+            <table class="table">
+                <tr>
+                    <td style="width:150px;">
+                        First Name:
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control2" })
+                        @Html.ValidationMessageFor(model => model.FirstName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Last Name:
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control2" })
+                        @Html.ValidationMessageFor(model => model.LastName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date Of Birth:
+                    </td>
+                    <td>
+                        <div class="col-xs-10">
+                            @Html.TextBoxFor(m => m.DateOfBirth, String.Format("{0:d}", Model.DateOfBirth), new {@class = "form-control2", @style = "display:block;float:left;"})
+                            @Html.ValidationMessageFor(model => model.DateOfBirth)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Address:
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control2" })
+                        @Html.ValidationMessageFor(model => model.Address)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        City:
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Sity, new { @class = "form-control2" })
+                        @Html.ValidationMessageFor(model => model.Sity)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        State:
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.State, new { @class = "form-control2" })
+                        @Html.ValidationMessageFor(model => model.State)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Country:
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.County, new { @class = "form-control2" })
+                        @Html.ValidationMessageFor(model => model.County)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Gender:
+                    </td>
+                    <td>
+                        <p>   @Html.RadioButtonFor(model => model.Gender, "Мужской") Мужской </p>
+                        <p>  @Html.RadioButtonFor(model => model.Gender, "Женский") Женский </p>
+                    </td>
+                </tr>
+            </table>
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Email)
+        @Html.HiddenFor(model => model.EmailConfirmed)
+        @Html.HiddenFor(model => model.PasswordHash)
+        @Html.HiddenFor(model => model.SecurityStamp)
+        @Html.HiddenFor(model => model.PhoneNumber)
+        @Html.HiddenFor(model => model.PhoneNumberConfirmed)
+        @Html.HiddenFor(model => model.TwoFactorEnabled)
+        @Html.HiddenFor(model => model.LockoutEndDateUtc)
+        @Html.HiddenFor(model => model.LockoutEnabled)
+        @Html.HiddenFor(model => model.AccessFailedCount)
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.UserName)
+        @Html.HiddenFor(model => model.Image)
+
+        <button class="btn btn-primary" type="submit" value="Save">
+            Save
+        </button>
+        <button class="btn" type="reset" value="Cancel" onclick="Cancel()">
+            Cancel
+        </button>
+    }
+</div>
+
+<script type="text/javascript">
+
+    function Cancel() {
+        $(".close").click();
+    }
+
+    $(document).ready(function () {
+        $('.ui-datepicker').each(function (i, v) {
+
+            $(".ui - datepicker").val(" ");
+            $(v).datepicker({
+                dateFormat: 'dd-M-yy',
+                changeYear: true,
+                yearRange: '1950:2010',
+                buttonImage: '@Url.Content("~/Content/calendar.gif")',
+                buttonImageOnly: true,
+                showOn: "button"
+            });
+        });
+    });
+
+</script>

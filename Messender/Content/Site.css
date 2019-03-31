@@ -1,0 +1,200 @@
+﻿body {
+    /*padding-top: 50px;*/
+    padding-left: 206px;
+    padding-right: 236px;
+    /*background-image: url('/Image/fon1.png');*/
+    background-color: #a9c6ea;
+}
+h4 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 125%;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: auto;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+input,
+select,
+textarea {
+    max-width: 1280px;
+}
+
+h1 {
+    font-size: 22px;
+    text-align: center;
+    padding: 7px;
+}
+
+.login {
+    margin-left: 385px;
+    margin-top: 20px;
+    background-color: white;
+    width: 350px;
+    height: 239px;
+    padding: 6px;
+    padding-top: 13px;
+    border-radius: 30px;
+}
+
+.imageLogin {
+    /* background-color: white; */
+    width: 339px;
+    margin-left: 392px;
+    margin-top: 100px;
+}
+
+.loginaround {
+    background-color: white;
+    margin-top: 15px;
+    margin-left: 384px;
+    text-align: center;
+    height: 28px;
+    border-radius: 20px;
+}
+
+.Register {
+    margin-left: 385px;
+    margin-top: 60px;
+    background-color: white;
+    width: 350px;
+    height: 472px;
+    padding: 6px;
+    padding-top: 13px;
+    border-radius: 30px;
+}
+
+.badge {
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-top: 5px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+    background-color: #bd4247;
+    width: 22px;
+    height: 20px;
+    text-align: center;
+}
+
+.notifications {
+    display: block;
+    position: sticky;
+    right: 649px;
+    top: 7%;
+    display: block;
+    height: 160px;
+    width: 357px;
+    /* background: url(../img/helpback.jpg) no-repeat; */
+    line-height: 50px;
+    transition: all .7s ease-out;
+    border: 1px solid #333;
+    border-radius: 2em;
+    z-index: 99999999;
+}
+
+
+label {
+    display: inline-block;
+    margin-bottom: -0.5rem;
+}
+
+.right-sidebar {
+    border: 1px solid #d7d7d7;
+    background-color: white;
+    float: left;
+    height: 750px;
+    left: 206px;
+    position: absolute;
+    right: 0;
+    top: 51px;
+    width: 320px;
+    padding: 10px;
+}
+
+.center-sidebar {
+    border: 1px solid #d7d7d7;
+    background-color: white;
+    float: left;
+    height: 750px;
+    left: 525px;
+    position: absolute;
+    right: 0;
+    top: 51px;
+    width: 840px;
+    padding: 10px;
+}
+.fon {
+    background-color: #e9ecef;
+}
+.ghost-button {
+    display: inline-block;
+    width: 45px;
+    padding: 8px;
+    /*color: #000;*/
+    border: 1px solid #fdfdfd;
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+    background-color: #fff0;
+}
+
+    .ghost-button:hover,
+    .ghost-button:active {
+        background-color: #faf5f5;
+        color: #000;
+    }
+
+.ghost-button-one {
+    display: inline-block;
+    width: 295px;
+    height: 70px;
+    /*padding: 10px;*/
+    color: #000;
+    border: 1px solid #fdfdfd;
+    text-align: left;
+    outline: none;
+    text-decoration: none;
+    background-color: #fff0;
+    font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */
+    font-size: 125%;
+}
+
+    .ghost-button-one:hover,
+    .ghost-button-one:active {
+        background-color: #faf5f5;
+        color: #000;
+    }
+
+.icon-edit {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    vertical-align: text-top;
+    background-image: url(../Image/glyphicons-halflings.png);
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+    margin-top: 1px;
+}
+
+.center {
+    width: 600px; /* Ширина элемента в пикселах */
+    height: 300px;
+    padding: 10px; /* Поля вокруг текста */
+    margin: 120px; /* Выравниваем по центру */
+    background: #fc0; /* Цвет фона */
+}
+
+
